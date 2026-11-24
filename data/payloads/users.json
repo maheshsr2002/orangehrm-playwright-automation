@@ -1,0 +1,69 @@
+{
+  "confidential_account_ref": "Loaded dynamically from .env via Config / Credentials model",
+  "negative_login_cases": [
+    {
+      "case_id": "NEG_01_EMPTY_BOTH",
+      "description": "Submitting empty username and password",
+      "username": "",
+      "password": "",
+      "expected_error": "Required",
+      "error_type": "field",
+      "target_field": "both"
+    },
+    {
+      "case_id": "NEG_02_EMPTY_USERNAME",
+      "description": "Submitting empty username with valid password",
+      "username": "",
+      "password_env_ref": true,
+      "expected_error": "Required",
+      "error_type": "field",
+      "target_field": "username"
+    },
+    {
+      "case_id": "NEG_03_EMPTY_PASSWORD",
+      "description": "Submitting valid username with empty password",
+      "username_env_ref": true,
+      "password": "",
+      "expected_error": "Required",
+      "error_type": "field",
+      "target_field": "password"
+    },
+    {
+      "case_id": "NEG_04_INVALID_PASSWORD",
+      "description": "Submitting valid username with incorrect password",
+      "username_env_ref": true,
+      "password": "WrongPassword!@#999",
+      "expected_error": "Invalid credentials",
+      "error_type": "alert"
+    },
+    {
+      "case_id": "NEG_05_INVALID_USERNAME",
+      "description": "Submitting non-existent username with valid password",
+      "username": "NonExistentAdmin_999",
+      "password_env_ref": true,
+      "expected_error": "Invalid credentials",
+      "error_type": "alert"
+    },
+    {
+      "case_id": "NEG_06_SQL_INJECTION",
+      "description": "Submitting SQL injection string in username",
+      "username": "' OR '1'='1",
+      "password_env_ref": true,
+      "expected_error": "Invalid credentials",
+      "error_type": "alert"
+    },
+    {
+      "case_id": "NEG_07_XSS_PAYLOAD",
+      "description": "Submitting XSS payload in username",
+      "username": "<script>alert('xss')</script>",
+      "password": "FakePassword123!",
+      "expected_error": "Invalid credentials",
+      "error_type": "alert"
+    }
+  ],
+  "system_user_search": {
+    "target_username": "Admin",
+    "role": "Admin",
+    "status": "Enabled"
+  }
+}

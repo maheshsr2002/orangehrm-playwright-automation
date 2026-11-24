@@ -1,0 +1,115 @@
+{
+  "employee": {
+    "first_name": "Alexander",
+    "middle_name": "James",
+    "last_name": "Wright",
+    "employee_id": "99101",
+    "search_name": "Alexander",
+    "search_id": "99101",
+    "other_id": "EMP-SEC-9988",
+    "drivers_license": "DL-TX-55443322",
+    "marital_status": "Single",
+    "nationality": "American",
+    "nickname": "AlexW",
+    "login_username": "alex.wright",
+    "login_password": "P@ssword1234!",
+    "login_confirm_password": "P@ssword1234!"
+  },
+  "admin": {
+    "search_username": "Admin",
+    "user_role": "ESS",
+    "user_status": "Enabled",
+    "employee_name_hint": "a",
+    "new_username": "alex.system.user",
+    "new_password": "AdminStrongPassword123!",
+    "confirm_password": "AdminStrongPassword123!"
+  },
+  "leave": {
+    "leave_type": "CAN - FMLA",
+    "from_date": "2026-12-01",
+    "to_date": "2026-12-02",
+    "comments": "Annual scheduled vacation leave application."
+  },
+  "time": {
+    "project_name": "Internal - Development",
+    "activity": "QA Automation Testing",
+    "hours": "8.0",
+    "punch_note": "Regular daily shift punch in."
+  },
+  "recruitment": {
+    "first_name": "Liam",
+    "middle_name": "K",
+    "last_name": "Anderson",
+    "email": "liam.anderson.qa@example.com",
+    "contact_number": "+1-555-019-2831",
+    "vacancy": "Senior QA Lead",
+    "notes": "Candidate registered via automation suite."
+  },
+  "buzz": {
+    "post_content": "End-to-End Quality Automation verification cycle running successfully on OrangeHRM."
+  },
+  "auth_invalid": {
+    "wrong_password": "WrongPassword!@#999",
+    "invalid_username": "NonExistentUser999",
+    "sql_injection": "' OR '1'='1",
+    "xss_payload": "<script>alert('xss')</script>"
+  },
+  "known_defects": {
+    "special_characters_input": {
+      "first_name_special_chars": "Alexander@#$%^&*()_+",
+      "last_name_special_chars": "Wright!~`{}[]|;:",
+      "dependent_name_special_chars": "Child#@!$%^",
+      "phone_with_letters": "PhoneABC-123-XYZ",
+      "expected_validation_error": "Allows numbers and alphabets only"
+    },
+    "duplicate_dependent": {
+      "name": "Emma Wright",
+      "relationship": "Child",
+      "date_of_birth": "2018-05-14",
+      "expected_uniqueness_warning": "Already exists"
+    },
+    "self_assignment_emergency_contact": {
+      "name": "Alexander Wright",
+      "relationship": "Self",
+      "home_telephone": "+1-555-019-1122",
+      "mobile": "+1-555-019-3344",
+      "work_telephone": "+1-555-019-5566",
+      "expected_business_rule_error": "Employee cannot be their own emergency contact"
+    },
+    "character_encoding_unicode_emoji": {
+      "emoji_nickname": "Alex 💅🚀✨",
+      "raw_emoji": "💅",
+      "corrupted_render": "?"
+    },
+    "delayed_file_upload_validation": {
+      "unsupported_filename": "payload_test.exe",
+      "mime_type": "application/x-msdownload",
+      "expected_error": "File type not allowed"
+    },
+    "language_localization_glitch": {
+      "default_locale": "en_US",
+      "intermittent_glitch_locale": "vi_VN"
+    },
+    "profile_dropdown_toggle_failure": {
+      "selector": ".oxd-userdropdown-tab",
+      "defect_summary": "Re-clicking profile avatar fails to toggle dropdown menu closed",
+      "resolution": "Use Escape key or click outside canvas to close"
+    },
+    "qualifications_404_deletion": {
+      "level": "Master's Degree",
+      "expected_error": "404 Records Not Found"
+    },
+    "recruitment_500_shortlist": {
+      "vacancy": "Senior QA Lead",
+      "expected_error": "500 Internal Server Error"
+    },
+    "leave_datetime_balance_drop": {
+      "leave_type": "CAN - FMLA",
+      "expected_balance_loss_issue": "Leave balance fails to restore after cancellation"
+    },
+    "timesheet_intermittent_save_failure": {
+      "hours": "8.0",
+      "expected_failure_issue": "Intermittent save failure on employee timesheet update"
+    }
+  }
+}

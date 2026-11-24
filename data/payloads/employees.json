@@ -1,0 +1,27 @@
+{
+  "onboarding_samples": [
+    {
+      "firstName": "Alexander",
+      "middleName": "James",
+      "lastName": "Wright",
+      "employeeId": "88001"
+    },
+    {
+      "firstName": "Sophia",
+      "middleName": "Rose",
+      "lastName": "Bennett",
+      "employeeId": "88002"
+    },
+    {
+      "firstName": "Lucas",
+      "middleName": "David",
+      "lastName": "Miller",
+      "employeeId": "88003"
+    }
+  ],
+  "profile_update_sample": {
+    "otherId": "EMP-SEC-9988",
+    "driversLicense": "DL-TX-55443322",
+    "nickname": "AlexW"
+  }
+}

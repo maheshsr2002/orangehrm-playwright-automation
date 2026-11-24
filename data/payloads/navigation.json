@@ -1,0 +1,34 @@
+{
+  "menu_items": [
+    "Admin",
+    "PIM",
+    "Leave",
+    "Time",
+    "Recruitment",
+    "My Info",
+    "Performance",
+    "Dashboard",
+    "Directory",
+    "Maintenance",
+    "Claim",
+    "Buzz"
+  ],
+  "search_filter_samples": [
+    {
+      "keyword": "Admin",
+      "expected_count": 1
+    },
+    {
+      "keyword": "PIM",
+      "expected_count": 1
+    },
+    {
+      "keyword": "Leave",
+      "expected_count": 1
+    },
+    {
+      "keyword": "My Info",
+      "expected_count": 1
+    }
+  ]
+}

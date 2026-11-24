@@ -1,0 +1,12 @@
+{
+  "announcements": [
+    {
+      "topic": "Release Milestone",
+      "template": "Automated Quality Milestone accomplished successfully: Zero defect tolerance achieved."
+    },
+    {
+      "topic": "Team Recognition",
+      "template": "Kudos to the engineering and QA team for continuous end-to-end automation excellence."
+    }
+  ]
+}

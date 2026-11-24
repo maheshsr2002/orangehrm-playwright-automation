@@ -1,0 +1,22 @@
+{
+  "recruitment_candidates": [
+    {
+      "firstName": "Liam",
+      "middleName": "K",
+      "lastName": "Anderson",
+      "email": "liam.anderson.qa@example.com",
+      "contactNumber": "+1-555-019-2831",
+      "vacancy": "Senior QA Lead",
+      "notes": "Candidate evaluated for Senior QA Lead role"
+    },
+    {
+      "firstName": "Emma",
+      "middleName": "L",
+      "lastName": "Thompson",
+      "email": "emma.thompson.dev@example.com",
+      "contactNumber": "+1-555-014-9922",
+      "vacancy": "Software Engineer",
+      "notes": "Candidate evaluated for Software Engineer role"
+    }
+  ]
+}

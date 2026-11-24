@@ -1,0 +1,20 @@
+{
+  "alerts": {
+    "invalid_credentials": "Invalid credentials",
+    "required_field": "Required",
+    "successfully_saved": "Successfully Saved",
+    "successfully_updated": "Successfully Updated",
+    "successfully_deleted": "Successfully Deleted"
+  },
+  "titles": {
+    "dashboard_breadcrumb": "Dashboard",
+    "reset_password": "Reset Password",
+    "personal_details": "Personal Details",
+    "apply_leave": "Apply Leave",
+    "candidates": "Candidates"
+  },
+  "roles": {
+    "admin": "Admin",
+    "ess": "ESS"
+  }
+}

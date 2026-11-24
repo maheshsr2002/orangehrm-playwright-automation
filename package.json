@@ -1,0 +1,31 @@
+{
+  "name": "orangehrm-playwright-automation",
+  "version": "1.0.0",
+  "description": "End-to-End Automation Testing Framework for OrangeHRM using Python, Playwright, and Pytest",
+  "scripts": {
+    "test": "pytest tests/test_e2e_complete_workflow.py --headed --slowmo 1000 -v",
+    "test:workflow": "pytest tests/test_e2e_complete_workflow.py --headed --slowmo 1000 -v",
+    "test:all": "pytest tests/ --headed --slowmo 1000 -v",
+    "test:smoke": "pytest -m smoke --headed --slowmo 1000 -v",
+    "test:regression": "pytest -m regression --headed --slowmo 1000 -v",
+    "test:login": "pytest tests/test_login.py --headed --slowmo 1000 -v",
+    "test:admin": "pytest tests/test_admin.py --headed --slowmo 1000 -v",
+    "test:pim": "pytest tests/test_pim.py --headed --slowmo 1000 -v",
+    "test:leave": "pytest tests/test_leave.py --headed --slowmo 1000 -v",
+    "test:time": "pytest tests/test_time.py --headed --slowmo 1000 -v",
+    "test:defects": "pytest tests/test_known_defects.py --headed --slowmo 1000 -v",
+    "test:headless": "pytest tests/ --headless -v",
+    "test:login:headless": "pytest tests/test_login.py --headless -v",
+    "report": "pytest --html=reports/report.html --self-contained-html"
+  },
+  "keywords": [
+    "playwright",
+    "pytest",
+    "orangehrm",
+    "automation",
+    "testing",
+    "e2e"
+  ],
+  "author": "Antigravity QA Engineering",
+  "license": "MIT"
+}
