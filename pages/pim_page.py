@@ -115,7 +115,11 @@ class PIMPage(BasePage):
         self.search_employee_id.fill(emp_id)
 
     def click_search(self):
-        self.search_button.click()
+        try:
+            with self.page.expect_response(lambda r: "pim/employees" in r.url, timeout=10000):
+                self.search_button.click()
+        except Exception:
+            self.search_button.click()
         self.wait_for_page_ready()
 
     def search_employee_by_name(self, name: str):

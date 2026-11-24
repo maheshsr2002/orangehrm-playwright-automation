@@ -51,16 +51,30 @@ class AdminPage(BasePage):
         self.wait_for_page_ready()
 
     def click_search(self):
-        self.search_button.click()
+        try:
+            with self.page.expect_response(lambda r: "admin/users" in r.url, timeout=10000):
+                self.search_button.click()
+        except Exception:
+            self.search_button.click()
         self.wait_for_page_ready()
 
     def search_user(self, username: str):
         self.enter_search_username(username)
         self.click_search()
         try:
-            self.page.locator(f".oxd-table-body .oxd-table-card:has-text('{username}')").first.wait_for(state="visible", timeout=8000)
+            self.page.wait_for_function(
+                """([expected]) => {
+                    const cell = document.querySelector(".oxd-table-body .oxd-table-card div[role='cell']:nth-child(2)");
+                    return cell && cell.textContent.trim().toLowerCase().includes(expected.toLowerCase());
+                }""",
+                arg=[username],
+                timeout=8000
+            )
         except Exception:
-            pass
+            try:
+                self.page.locator(f".oxd-table-body .oxd-table-card div[role='cell']:nth-child(2):has-text('{username}')").first.wait_for(state="visible", timeout=3000)
+            except Exception:
+                pass
 
     def filter_by_role(self, role_name: str):
         self.select_role(role_name)
