@@ -1,0 +1,103 @@
+name: Playwright Pytest CI Automation
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+    inputs:
+      test_suite:
+        description: 'Select test suite to run'
+        required: true
+        default: 'smoke'
+        type: choice
+        options:
+          - 'smoke'
+          - 'regression'
+          - 'login'
+          - 'admin'
+          - 'pim'
+          - 'defects'
+          - 'all'
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    name: Run E2E Playwright Suite
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    env:
+      BASE_URL: https://opensource-demo.orangehrmlive.com
+      # Reads from GitHub Secrets if configured, otherwise falls back to public demo credentials
+      ADMIN_USERNAME: ${{ secrets.ADMIN_USERNAME || 'Admin' }}
+      ADMIN_PASSWORD: ${{ secrets.ADMIN_PASSWORD || 'admin123' }}
+      BROWSER: chromium
+      HEADLESS: true
+      SLOW_MO: 0
+      DEFAULT_TIMEOUT: 40000
+      NAVIGATION_TIMEOUT: 60000
+      SCREENSHOT_ON_FAILURE: true
+      VIDEO_RECORDING: retain-on-failure
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: 'pip'
+
+      - name: Install Python Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Install Playwright & System Dependencies
+        run: |
+          playwright install --with-deps chromium
+
+      - name: Ensure Reports Directory Exists
+        run: |
+          mkdir -p reports/screenshots reports/videos
+
+      - name: Execute Tests (Manual Dispatch Trigger)
+        if: github.event_name == 'workflow_dispatch'
+        run: |
+          SUITE="${{ github.event.inputs.test_suite }}"
+          echo "Executing selected test suite: $SUITE"
+          if [ "$SUITE" = "all" ]; then
+            pytest tests/ --headless -v
+          elif [ "$SUITE" = "login" ]; then
+            pytest tests/test_login.py --headless -v
+          elif [ "$SUITE" = "admin" ]; then
+            pytest tests/test_admin.py --headless -v
+          elif [ "$SUITE" = "pim" ]; then
+            pytest tests/test_pim.py --headless -v
+          elif [ "$SUITE" = "defects" ]; then
+            pytest tests/test_known_defects.py --headless -v
+          else
+            pytest -m "$SUITE" --headless -v
+          fi
+
+      - name: Execute Tests (Push / Pull Request Trigger)
+        if: github.event_name != 'workflow_dispatch'
+        run: |
+          echo "Running smoke tests on push/pull_request trigger..."
+          pytest -m smoke --headless -v
+
+      - name: Upload HTML Test Report & Screenshots
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: playwright-pytest-report
+          path: |
+            reports/report.html
+            reports/screenshots/
+          retention-days: 14
